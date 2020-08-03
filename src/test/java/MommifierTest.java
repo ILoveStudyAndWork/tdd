@@ -23,7 +23,6 @@ public class MommifierTest {
         String[] inserted_string = mommifier.insertBetweenContinuesVowels(source);
         //then
         assertArrayEquals(expected,inserted_string);
-        //assertEquals(expected,result);
     }
 
     @Test

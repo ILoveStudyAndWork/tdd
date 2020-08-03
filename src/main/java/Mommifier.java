@@ -1,67 +1,65 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Mommifier {
 
     public String[] insertBetweenContinuesVowels(String[] source) {
-        List<String> list = new ArrayList<>();
-        Arrays.stream(source).forEach(s -> {
-            if(vowelsBeyond30percentage(s)){
-                list.add(insertMommy(s));
+        List<String> stringList = new ArrayList<>();
+        Arrays.stream(source).forEach(str -> {
+            if(vowelsBeyond30percentage(str)){
+                stringList.add(insertMommy(str));
             }else {
-                list.add(s);
+                stringList.add(str);
             }
         });
-        String[] result = new String[list.size()];
-        for (int o = 0; o < result.length; o++){
-            result[o] = list.get(o);
+        String[] resultArray = new String[stringList.size()];
+        for (int o = 0; o < resultArray.length; o++){
+            resultArray[o] = stringList.get(o);
         }
-        return result;
+        return resultArray;
     }
 
-    Boolean vowelsBeyond30percentage(String s){
-        String[] singleString = s.split("");
-
-        float count = 0;
-        for (String single :singleString){
+    Boolean vowelsBeyond30percentage(String stringToBeTest){
+        String[] EvertCharToString = stringToBeTest.split("");
+        float vowel = 0;
+        for (String single :EvertCharToString){
             if (single.equals("a") ||single.equals("e")||single.equals("i")||single.equals("o")||single.equals("u")||single.equals("A")||single.equals("E")||single.equals("I")||single.equals("O")||single.equals("U")){
-                count++;
+                vowel++;
             }
-
         }
-        return  (count/(float) singleString.length) > 0.3;
+        return  (vowel/(float) EvertCharToString.length) > 0.3;
     }
 
-    String insertMommy(String s){
-        String[] singleString = s.split("");
-        List<String> stringList = new ArrayList<>();
+    String insertMommy(String stringToBeModify){
+        String[] EveryCharToString = stringToBeModify.split("");
+        List<String> listAfterInsert = new ArrayList<>();
         //int currentIndex = 0;
-        for (int i = 0;i < singleString.length-1;i++){
-            if (isVowel(singleString[i]) && isVowel(singleString[i+1])){
-                stringList.add(singleString[i]);
-                stringList.add("mommy");
+        for (int i = 0;i < EveryCharToString.length-1;i++){
+            if (isVowel(EveryCharToString[i]) && isVowel(EveryCharToString[i+1])){
+                listAfterInsert.add(EveryCharToString[i]);
+                listAfterInsert.add("mommy");
             }
             else {
-                stringList.add(singleString[i]);
+                listAfterInsert.add(EveryCharToString[i]);
             }
-
         }
         //add the last element
-        stringList.add(singleString[singleString.length-1]);
-        StringBuilder result = new StringBuilder();
-        stringList.stream().forEach(single->result.append(single));
-        return result.toString();
+        listAfterInsert.add(EveryCharToString[EveryCharToString.length-1]);
+        StringBuilder resultStringBuilder = new StringBuilder();
+        listAfterInsert.stream().forEach(single->resultStringBuilder.append(single));
+        return resultStringBuilder.toString();
 
     }
 
 
-    boolean isVowel(String single){
-        if (single.equals("a") ||single.equals("a")||single.equals("a")||single.equals("a")||single.equals("a")||single.equals("a")||single.equals("a")||single.equals("a")||single.equals("a")||single.equals("a")){
-            return true;
-        }else {
-            return false;
-        }
+    boolean isVowel(String toBeTest){
+        String pattern = "[AEIOUaeiou]";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(toBeTest);
+        return m.matches();
     }
 
 }
