@@ -4,24 +4,23 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 public class MommifierTest {
+    Mommifier mommifier = new Mommifier();
     @Test
     void should_return_original_string_when_insert_between_continuous_vowels_given_string_has_the_number_of_vowels_less_then_30_percentage(){
-        Mommifier mommifier = new Mommifier();
         //given
-        String[] sourse = {"afbcd","abcde"};
+        String[] source = {"afbcd","abcde"};
         //when
-        String[] original_string = mommifier.insertBetweenContinuesVowels(sourse);
+        String[] original_string = mommifier.insertBetweenContinuesVowels(source);
         //then
-        assertArrayEquals(sourse,original_string);
+        assertArrayEquals(source,original_string);
     }
     @Test
     void should_return_inserted_string_when_insert_between_continuous_vowels_given_string_has_the_number_of_vowels_more_then_30_percentage(){
-        Mommifier mommifier = new Mommifier();
         //given
-        String[] sourse = {"aabcede","abcde"};
+        String[] source = {"aabcede","abcde"};
         //when
         String[] expected = {"amommyabcede","abcde"};
-        String[] inserted_string = mommifier.insertBetweenContinuesVowels(sourse);
+        String[] inserted_string = mommifier.insertBetweenContinuesVowels(source);
         //then
         assertArrayEquals(expected,inserted_string);
         //assertEquals(expected,result);
@@ -29,13 +28,14 @@ public class MommifierTest {
 
     @Test
     void should_return_original_string_when_insert_between_continuous_vowels_given_string_has_the_number_of_vowels_more_then_30_percentage_but_not_continue(){
-        Mommifier mommifier = new Mommifier();
         //given
-        String[] sourse = {"afecid","afAbicudefI"};
+        String[] source = {"afecid","afAbicudefI"};
         //when
-        String[] original_string = mommifier.insertBetweenContinuesVowels(sourse);
+        String[] original_string = mommifier.insertBetweenContinuesVowels(source);
         //then
-        assertArrayEquals(sourse,original_string);
+        assertArrayEquals(source,original_string);
     }
+
+
 }
 

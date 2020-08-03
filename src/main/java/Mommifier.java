@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Mommifier {
 
-    public String[] insertBetweenContinuesVowels(String[] sourse) {
+    public String[] insertBetweenContinuesVowels(String[] source) {
         List<String> list = new ArrayList<>();
-        Arrays.stream(sourse).forEach(s -> {
+        Arrays.stream(source).forEach(s -> {
             if(vowelsBeyond30percentage(s)){
                 list.add(insertMommy(s));
             }else {
